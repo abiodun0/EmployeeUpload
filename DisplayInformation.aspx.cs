@@ -45,7 +45,9 @@ public partial class DisplayInformation : System.Web.UI.Page
         if (result && result2) {
 
             UPLOADFOLDER = "Uploads" + "/" + TransactionNo.Text;
-        
+            LoadUploadedFiles(ref gvNewFiles);
+            Label2.Text = "";
+            Label1.Text = "";
         
         }
 
@@ -54,7 +56,7 @@ public partial class DisplayInformation : System.Web.UI.Page
        
   
     } 
-    public static object GetUploadStatus()
+  /*  public static object GetUploadStatus()
     {
         //Get the length of the file on disk and divide that by the length of the stream
         UploadDetail info = (UploadDetail)HttpContext.Current.Session["UploadDetail"];
@@ -76,7 +78,7 @@ public partial class DisplayInformation : System.Web.UI.Page
         }
         //Not ready yet
         return null;
-    }
+    } */
     #endregion
 
     #region Web Callbacks
@@ -103,7 +105,7 @@ public partial class DisplayInformation : System.Web.UI.Page
                 break;
         }
     }
-    protected void hdRefereshGrid_ValueChanged(object sender, EventArgs e)
+   protected void hdRefereshGrid_ValueChanged(object sender, EventArgs e)
     {
         LoadUploadedFiles(ref gvNewFiles);
     }
