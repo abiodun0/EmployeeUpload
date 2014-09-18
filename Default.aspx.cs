@@ -87,6 +87,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        // SendMail();
         SaveInfo saveInfoInDB = new SaveInfo();
         saveInfoInDB.Name = YourName.Text;
         saveInfoInDB.Email = YourEmail.Text;

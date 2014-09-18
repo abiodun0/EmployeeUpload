@@ -33,6 +33,7 @@ public partial class DisplayInformation : System.Web.UI.Page
         SearchEmail.TransactionNo = TransactionNo.Text;
         bool result = SearchEmail.SearchEmail();
         bool result2 = SearchEmail.Transaction();
+        bool result3 = SearchEmail.Auth();
         if (!result){
             Label1.Text = "Email Not REgistered";
    
@@ -42,7 +43,13 @@ public partial class DisplayInformation : System.Web.UI.Page
         Label2.Text ="Transaction Number Not Found";
         
         }
-        if (result && result2) {
+        else if (!result3) {
+          Label1.Text = "Wrong Email and Transaction Number Combination";
+          Label2.Text = "";
+      }
+
+        if (result3)
+        {
 
             UPLOADFOLDER = "Uploads" + "/" + TransactionNo.Text;
             LoadUploadedFiles(ref gvNewFiles);

@@ -81,5 +81,40 @@ public class Search
         }
         return result;
 	}
+    public bool Auth()
+    {
+        bool result = false;
+        Result Result = new Result();
+        string strConnection = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\EmployeeDatabase.mdf;Integrated Security=True";
+        //"Data Source=Imdadhusen\\SQLEXPRESS;Initial Catalog=SaveFileExampleDB;Integrated Security=True;Pooling=False"
+        using (SqlConnection conn = new SqlConnection(strConnection))
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "SearchAuth";
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@Email", Email);
+            cmd.Parameters.AddWithValue("@TransactionNo", TransactionNo);
+
+            try
+            {
+                conn.Open();
+                double amountOfTransactions = Convert.ToDouble(cmd.ExecuteScalar());
+                if (amountOfTransactions >= 1)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        return result;
+    }
        
 }
